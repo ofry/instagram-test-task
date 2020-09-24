@@ -15,7 +15,13 @@
         "laminas/laminas-development-mode": "^3.2",
         "laminas/laminas-mvc": "^3.1.1",
         "laminas/laminas-db": "^2.11.3",
-        "doctrine/doctrine-orm-module": "^2.1.2"
+        "doctrine/doctrine-orm-module": "^3",
+        "laminas/laminas-log": "^2.12",
+        "laminas/laminas-hydrator": "^3.1",
+        "laminas/laminas-form": "^2.15"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -39,7 +45,7 @@
             "php -r 'if (file_exists(\"bin/remove-package-artifacts.php\")) include \"bin/remove-package-artifacts.php\";'",
             "php -r 'if (file_exists(\"CHANGELOG.md\")) unlink(\"CHANGELOG.md\");'"
         ],
-        "serve": "php -S 0.0.0.0:8080 -t public",
+        "serve": "php -S 0.0.0.0:8081 -t public",
         "test": "phpunit"
     },
     "scripts-descriptions": {
