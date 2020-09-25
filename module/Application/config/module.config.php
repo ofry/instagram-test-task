@@ -15,6 +15,39 @@ use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
+    'log' => [
+        'MyLogger' => [
+            'writers'    => [
+                'syslog' => [
+                    'name'     => 'syslog',
+                    'priority' => \Laminas\Log\Logger::ALERT,
+                    'options'  => [
+                        'formatter' => [
+                            'name'    => \Laminas\Log\Formatter\Simple::class,
+                            'options' => [
+                                'format'         => '%timestamp% %priorityName% (%priority%): %message% %extra%',
+                                'dateTimeFormat' => 'r',
+                            ],
+                        ],
+                        'filters'   => [
+                            'priority' => [
+                                'name'    => 'priority',
+                                'options' => [
+                                    'operator' => '<=',
+                                    'priority' => \Laminas\Log\Logger::INFO,
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'processors' => [
+                'backtrace' => [
+                    'name' => \Laminas\Log\Processor\Backtrace::class,
+                ],
+            ],
+        ],
+    ],
     'router' => [
         'routes' => [
             'home' => [

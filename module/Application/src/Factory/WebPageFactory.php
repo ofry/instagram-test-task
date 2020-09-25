@@ -30,8 +30,7 @@
         {
             $logger = $container->get('MyLogger');
             $config = $container->get('config');
-            $client_options = isset($config['client']['options']) ?
-                $config['client']['options'] : array();
+            $client_options = $config['client']['options'] ?? array();
             return new WebPage($logger, $client_options);
         }
     }
