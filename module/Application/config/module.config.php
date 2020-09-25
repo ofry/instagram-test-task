@@ -61,6 +61,34 @@ return [
                     ],
                 ],
             ],
+            'account'     => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/api/user[/:username]',
+                    'constraints' => [
+                        'username' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\AccountParserController::class,
+                        'action'     => 'index',
+                        'username'   => 'zend'
+                    ],
+                ],
+            ],
+            'post'     => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/api/post[/:post_id]',
+                    'constraints' => [
+                        'post_id'     => '[0-9]+'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\PostParserController::class,
+                        'action'     => 'index',
+                        'post_id' => '0'
+                    ],
+                ],
+            ],
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
