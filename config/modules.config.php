@@ -13,7 +13,6 @@
  */
 return [
     'Laminas\Log',
-    'Laminas\Db',
     'Zend\Cache',
     'Zend\Form',
     'Zend\InputFilter',
@@ -22,7 +21,5 @@ return [
     'Zend\Hydrator',
     'Laminas\Router',
     'Laminas\Validator',
-    'DoctrineModule',
-    'DoctrineORMModule',
     'Application',
 ];

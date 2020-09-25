@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Application;
 
+use Application\Controller\Plugin\DomExtender;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
@@ -75,6 +76,14 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+        ],
+    ],
+    'controller_plugins' => [
+        'factories' => [
+            DomExtender::class => InvokableFactory::class,
+        ],
+        'aliases' => [
+            'dom' => DomExtender::class,
         ],
     ],
     'view_manager' => [
