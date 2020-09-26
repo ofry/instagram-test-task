@@ -66,6 +66,13 @@
                 );
             }
             else {
+
+                $document = $this->dom()->createFrom($this->page->getDom(self::URI . $username));
+                $encoding = $document->getDomDocument()->encoding;
+                $events = Query::execute('article > div > div > div > div > a', $document, Query::TYPE_CSS);
+
+                var_dump($document);
+                var_dump($events);
                 $result = array(
                     'error' => false,
                     'post_urls' => array()

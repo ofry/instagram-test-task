@@ -13,12 +13,8 @@
  */
 return [
     'Laminas\Log',
-    'Zend\Cache',
-    'Zend\Form',
-    'Zend\InputFilter',
-    'Zend\Filter',
-    'Zend\Paginator',
-    'Zend\Hydrator',
+//    'Laminas\Cache',
+    'Laminas\Hydrator',
     'Laminas\Router',
     'Laminas\Validator',
     'Laminas\Diactoros',

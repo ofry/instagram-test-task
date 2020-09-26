@@ -11,6 +11,9 @@ declare(strict_types=1);
 namespace Application;
 
 use Application\Controller\Plugin\DomExtender;
+use Application\Factory\WebPageFactory;
+use Application\Factory\WebPageModelFactory;
+use Application\Model\WebPage;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
@@ -104,6 +107,8 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+            Controller\AccountParserController::class => WebPageFactory::class,
+            Controller\PostParserController::class => WebPageFactory::class,
         ],
     ],
     'controller_plugins' => [
@@ -131,6 +136,17 @@ return [
         ],
         'strategies' => [
             'ViewJsonStrategy',
+        ],
+    ],
+    'service_manager' => [
+        'abstract_factories' => [
+            \Laminas\Log\LoggerAbstractServiceFactory::class,
+        ],
+        'factories'          => [
+            WebPage::class => WebPageModelFactory::class,
+        ],
+        'aliases'            => [
+            WebPageModelFactory::class => WebPage::class,
         ],
     ],
 ];
