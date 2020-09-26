@@ -21,5 +21,6 @@ return [
     'Zend\Hydrator',
     'Laminas\Router',
     'Laminas\Validator',
+    'Laminas\Diactoros',
     'Application',
 ];

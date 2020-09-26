@@ -53,7 +53,24 @@
          */
         public function indexAction()
         {
-            $result = array();
+            $username = $this->params()->fromRoute('username', null);
+            if (!isset($username)) {
+                /*
+                * Эта ветка не должна запускаться, т.к. дано значение по умолчанию
+                * внутри modules.config.php
+                */
+                $result = array(
+                    'error' => true,
+                    'message' => 'Имя пользователя Instagram не задано.',
+                    'post_urls' => array()
+                );
+            }
+            else {
+                $result = array(
+                    'error' => false,
+                    'post_urls' => array()
+                );
+            }
             return new JsonModel(array('response' => $result));
         }
     }
