@@ -69,13 +69,26 @@
 
                 $document = $this->dom()->createFrom($this->page->getDom(self::URI . $username));
                 $encoding = $document->getDomDocument()->encoding;
-                $events = Query::execute('article > div > div > div > div > a', $document, Query::TYPE_CSS);
+                $scripts = Query::execute('body > script', $document, Query::TYPE_CSS);
 
-                var_dump($document);
-                var_dump($events);
+
+
+                foreach ($scripts as $script) {
+                    $scriptText = trim($script->textContent); // содержит тело скрипта
+                    if (($position = mb_strpos($scriptText, "window._sharedData = ")) !== FALSE) {
+                        $dataJSON = mb_substr($scriptText,
+                            $position + mb_strlen("window._sharedData = "), -1);
+                        $data = json_decode($dataJSON, true);
+                        break;
+                    }
+                }
+
+                $profilePage = $data['entry_data']['ProfilePage'][0]['graphql']['user'] ?? array();
+
                 $result = array(
                     'error' => false,
-                    'post_urls' => array()
+                    'post_urls' => array(),
+                    'raw_data' => $profilePage,
                 );
             }
             return new JsonModel(array('response' => $result));
